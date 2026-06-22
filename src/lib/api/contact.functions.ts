@@ -11,7 +11,7 @@ const Schema = z.object({
 export type ContactInput = z.infer<typeof Schema>;
 
 export const submitContact = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => Schema.parse(data))
+  .validator((data: unknown) => Schema.parse(data))
   .handler(async ({ data }) => {
     // Log to server console — production hookup (Resend / Cloud table) can be added later.
     console.log("[contact]", {

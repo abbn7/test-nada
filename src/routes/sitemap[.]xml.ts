@@ -4,7 +4,11 @@ import { profile } from "@/lib/data/profile";
 
 const BASE_URL = "";
 
-interface Entry { path: string; changefreq?: string; priority?: string }
+interface Entry {
+  path: string;
+  changefreq?: string;
+  priority?: string;
+}
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
@@ -17,7 +21,11 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/skills", changefreq: "monthly", priority: "0.7" },
           { path: "/github", changefreq: "weekly", priority: "0.7" },
           { path: "/contact", changefreq: "monthly", priority: "0.8" },
-          ...profile.projects.map((p) => ({ path: `/work/${p.slug}`, changefreq: "monthly", priority: "0.8" })),
+          ...profile.projects.map((p) => ({
+            path: `/work/${p.slug}`,
+            changefreq: "monthly",
+            priority: "0.8",
+          })),
         ];
         const urls = entries
           .map(

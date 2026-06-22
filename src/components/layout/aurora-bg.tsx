@@ -1,15 +1,17 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 /**
  * Animated aurora gradient backdrop. Sits behind everything.
  * Uses pure CSS animations + framer for subtle drift; no R3F overhead.
  */
 export function AuroraBackdrop() {
+  const reduced = useReducedMotion();
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined" || reduced) return;
     let raf = 0;
     const handler = (e: MouseEvent) => {
       cancelAnimationFrame(raf);
@@ -22,38 +24,35 @@ export function AuroraBackdrop() {
       window.removeEventListener("pointermove", handler);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [reduced]);
+
+  const drift = reduced
+    ? undefined
+    : {
+        transform: `translate3d(${(mouse.x - 0.5) * 24}px, ${(mouse.y - 0.5) * 24}px, 0)`,
+        transition: "transform 1.2s cubic-bezier(0.22,1,0.36,1)",
+      };
 
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden>
-      {/* Base wash */}
       <div className="absolute inset-0 bg-[var(--bg)]" />
+      <div className="subtle-grid absolute inset-0 opacity-[0.18]" />
 
-      {/* Aurora mesh — main */}
       <motion.div
-        className="aurora-mesh absolute -inset-[20%] opacity-90"
-        style={{
-          transform: `translate3d(${(mouse.x - 0.5) * 30}px, ${(mouse.y - 0.5) * 30}px, 0)`,
-          transition: "transform 1.2s cubic-bezier(0.22,1,0.36,1)",
-        }}
-        animate={{
-          scale: [1, 1.05, 1],
-          rotate: [0, 1, 0],
-        }}
+        className="aurora-mesh absolute -inset-[20%] opacity-90 blur-[2px]"
+        style={drift}
+        animate={reduced ? undefined : { scale: [1, 1.05, 1], rotate: [0, 1, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Second aurora layer — slower, opposite direction */}
       <motion.div
         className="aurora-mesh absolute -inset-[25%] opacity-50 blur-3xl"
-        animate={{
-          scale: [1.1, 1, 1.1],
-          rotate: [0, -2, 0],
-        }}
+        animate={reduced ? undefined : { scale: [1.1, 1, 1.1], rotate: [0, -2, 0] }}
         transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Grain overlay */}
+      <div className="glow-orb absolute left-1/2 top-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 opacity-35" />
+
       <div
         className="absolute inset-0 opacity-[0.04] mix-blend-overlay"
         style={{
@@ -62,8 +61,7 @@ export function AuroraBackdrop() {
         }}
       />
 
-      {/* Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,var(--bg)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,var(--bg)_100%)]" />
     </div>
   );
 }

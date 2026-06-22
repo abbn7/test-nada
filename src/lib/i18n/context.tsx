@@ -36,10 +36,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   const toggle = useCallback(() => setLang(lang === "en" ? "ar" : "en"), [lang, setLang]);
 
-  const t = useCallback(
-    (en: string, ar: string) => (lang === "ar" ? ar : en),
-    [lang],
-  );
+  const t = useCallback((en: string, ar: string) => (lang === "ar" ? ar : en), [lang]);
 
   return (
     <I18nContext.Provider value={{ lang, setLang, toggle, dir: lang === "ar" ? "rtl" : "ltr", t }}>

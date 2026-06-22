@@ -39,11 +39,26 @@ export function Monogram({ size = 40, className, animated = false, withRing = tr
       </defs>
 
       {withRing && (
-        <circle cx="32" cy="32" r="30" fill="none" stroke="url(#an-grad)" strokeWidth="1.2" opacity="0.5" />
+        <circle
+          cx="32"
+          cy="32"
+          r="30"
+          fill="none"
+          stroke="url(#an-grad)"
+          strokeWidth="1.2"
+          opacity="0.5"
+        />
       )}
 
       {/* Inner glass plate */}
-      <circle cx="32" cy="32" r="26" fill="url(#an-grad-soft)" stroke="oklch(1 0 0 / 0.35)" strokeWidth="0.6" />
+      <circle
+        cx="32"
+        cy="32"
+        r="26"
+        fill="url(#an-grad-soft)"
+        stroke="oklch(1 0 0 / 0.35)"
+        strokeWidth="0.6"
+      />
 
       {/* A — left diagonal */}
       <path
@@ -56,7 +71,11 @@ export function Monogram({ size = 40, className, animated = false, withRing = tr
         filter="url(#an-blur)"
         style={
           animated
-            ? { strokeDasharray: 120, strokeDashoffset: 120, animation: "draw-stroke 1.6s var(--ease-apple) forwards" }
+            ? {
+                strokeDasharray: 120,
+                strokeDashoffset: 120,
+                animation: "draw-stroke 1.6s var(--ease-apple) forwards",
+              }
             : undefined
         }
       />
@@ -70,7 +89,11 @@ export function Monogram({ size = 40, className, animated = false, withRing = tr
         opacity="0.85"
         style={
           animated
-            ? { strokeDasharray: 20, strokeDashoffset: 20, animation: "draw-stroke 0.8s var(--ease-apple) 0.6s forwards" }
+            ? {
+                strokeDasharray: 20,
+                strokeDashoffset: 20,
+                animation: "draw-stroke 0.8s var(--ease-apple) 0.6s forwards",
+              }
             : undefined
         }
       />
@@ -85,7 +108,11 @@ export function Monogram({ size = 40, className, animated = false, withRing = tr
         opacity="0.9"
         style={
           animated
-            ? { strokeDasharray: 120, strokeDashoffset: 120, animation: "draw-stroke 1.6s var(--ease-apple) 0.3s forwards" }
+            ? {
+                strokeDasharray: 120,
+                strokeDashoffset: 120,
+                animation: "draw-stroke 1.6s var(--ease-apple) 0.3s forwards",
+              }
             : undefined
         }
       />

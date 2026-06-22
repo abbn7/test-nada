@@ -5,11 +5,13 @@ import { forwardRef, type ReactNode } from "react";
 interface GlassCardProps extends HTMLMotionProps<"div"> {
   tier?: "whisper" | "card" | "strong";
   glow?: boolean;
+  interactive?: boolean;
+  edge?: boolean;
   children: ReactNode;
 }
 
 export const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(function GlassCard(
-  { className, tier = "card", glow = false, children, ...rest },
+  { className, tier = "card", glow = false, interactive = false, edge = false, children, ...rest },
   ref,
 ) {
   const tierClass =
@@ -20,7 +22,10 @@ export const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(function Gla
       className={cn(
         "relative overflow-hidden rounded-3xl",
         tierClass,
-        glow && "before:absolute before:inset-0 before:rounded-3xl before:bg-gradient-to-br before:from-[var(--accent-1)]/8 before:via-transparent before:to-[var(--accent-3)]/8 before:pointer-events-none",
+        edge && "glass-edge",
+        interactive && "glass-interactive",
+        glow &&
+          "after:pointer-events-none after:absolute after:inset-0 after:rounded-3xl after:bg-gradient-to-br after:from-[var(--accent-1)]/10 after:via-transparent after:to-[var(--accent-3)]/10",
         className,
       )}
       {...rest}

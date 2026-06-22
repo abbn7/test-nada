@@ -38,24 +38,61 @@ export const profile = {
   portrait: portrait.url,
   highlights: {
     en: [
-      { title: "Frontend-First Mindset", body: "Pixel-perfect UI, smooth UX, performance optimization." },
-      { title: "AI-Augmented Developer", body: "Leverages AI tools to deliver faster without sacrificing quality." },
-      { title: "GitHub Power User", body: "Clean commits, PRs, CI/CD, and collaborative workflows." },
-      { title: "Remote-Ready", body: "Available for international remote roles and freelance projects." },
+      {
+        title: "Frontend-First Mindset",
+        body: "Pixel-perfect UI, smooth UX, performance optimization.",
+      },
+      {
+        title: "AI-Augmented Developer",
+        body: "Leverages AI tools to deliver faster without sacrificing quality.",
+      },
+      {
+        title: "GitHub Power User",
+        body: "Clean commits, PRs, CI/CD, and collaborative workflows.",
+      },
+      {
+        title: "Remote-Ready",
+        body: "Available for international remote roles and freelance projects.",
+      },
     ],
     ar: [
       { title: "عقلية Frontend-First", body: "واجهات بدقة البكسل، تجربة سلسة، وأداء محسّن." },
-      { title: "مطور مدعوم بـ AI", body: "يستخدم أدوات الذكاء الاصطناعي للتسليم الأسرع بدون التنازل عن الجودة." },
+      {
+        title: "مطور مدعوم بـ AI",
+        body: "يستخدم أدوات الذكاء الاصطناعي للتسليم الأسرع بدون التنازل عن الجودة.",
+      },
       { title: "خبير GitHub", body: "كوميتات نظيفة، PRs، CI/CD، وسير عمل تعاوني." },
       { title: "جاهز للعمل عن بُعد", body: "متاح للأدوار الدولية والمشاريع المستقلة." },
     ],
   },
   skills: {
-    Frontend: ["React.js", "Next.js 15", "TypeScript", "JavaScript (ES2024)", "HTML5", "CSS3", "Tailwind CSS", "Shadcn/UI", "Framer Motion"],
+    Frontend: [
+      "React.js",
+      "Next.js 15",
+      "TypeScript",
+      "JavaScript (ES2024)",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "Shadcn/UI",
+      "Framer Motion",
+    ],
     Backend: ["Node.js", "Supabase", "REST APIs", "PostgreSQL", "Python"],
-    "AI & Tools": ["Claude AI", "ChatGPT", "GitHub Copilot", "Cursor AI", "Prompt Engineering", "AI-Augmented Dev"],
+    "AI & Tools": [
+      "Claude AI",
+      "ChatGPT",
+      "GitHub Copilot",
+      "Cursor AI",
+      "Prompt Engineering",
+      "AI-Augmented Dev",
+    ],
     DevOps: ["Git", "GitHub", "GitHub Actions", "Vercel", "Netlify"],
-    Other: ["Telegram Bot API", "SaaS Architecture", "E-Commerce Systems", "Performance Optimization"],
+    Other: [
+      "Telegram Bot API",
+      "SaaS Architecture",
+      "E-Commerce Systems",
+      "Performance Optimization",
+    ],
     Languages: ["Arabic (Native)", "English (Professional)"],
   } as Record<string, string[]>,
   education: {
@@ -198,8 +235,7 @@ export const profile = {
 
 export type Project = (typeof profile.projects)[number];
 
-export const getProject = (slug: string) =>
-  profile.projects.find((p) => p.slug === slug);
+export const getProject = (slug: string) => profile.projects.find((p) => p.slug === slug);
 
 export const whatsappUrl = (lang: "en" | "ar") =>
   `https://wa.me/${profile.contact.phone.replace(/\D/g, "")}?text=${encodeURIComponent(

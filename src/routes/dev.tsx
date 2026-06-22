@@ -42,9 +42,15 @@ export const Route = createFileRoute("/dev")({
   head: () => ({
     meta: [
       { title: "Developer Mode — Abdelhamed Nada" },
-      { name: "description", content: "Architecture, tech stack, and libraries powering this portfolio." },
+      {
+        name: "description",
+        content: "Architecture, tech stack, and libraries powering this portfolio.",
+      },
       { property: "og:title", content: "Developer Mode — Abdelhamed Nada" },
-      { property: "og:description", content: "Architecture, tech stack, and libraries powering this portfolio." },
+      {
+        property: "og:description",
+        content: "Architecture, tech stack, and libraries powering this portfolio.",
+      },
       { property: "og:url", content: "/dev" },
       { name: "robots", content: "noindex" },
     ],
@@ -77,7 +83,7 @@ function DevPage() {
           <div className="glass-card noise-overlay h-full p-6">
             <h2 className="mb-4 font-display text-2xl">{t("Architecture", "الهيكل")}</h2>
             <pre className="overflow-x-auto rounded-2xl bg-[var(--bg-deep)]/60 p-4 font-mono text-[11px] leading-relaxed text-[var(--text-soft)]">
-{ARCH}
+              {ARCH}
             </pre>
           </div>
         </Reveal>
@@ -108,7 +114,9 @@ function DevPage() {
       <Reveal>
         <div className="mx-auto mt-6 max-w-6xl">
           <div className="glass-card noise-overlay p-6">
-            <h2 className="mb-4 font-display text-2xl">{t("Performance budget", "ميزانية الأداء")}</h2>
+            <h2 className="mb-4 font-display text-2xl">
+              {t("Performance budget", "ميزانية الأداء")}
+            </h2>
             <div className="grid gap-3 sm:grid-cols-4">
               {[
                 { l: "LCP", v: "< 1.8s" },

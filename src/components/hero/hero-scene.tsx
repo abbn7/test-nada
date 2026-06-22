@@ -35,7 +35,7 @@ function GlassShape({
         {geometry === "octa" && <octahedronGeometry args={[0.9, 4]} />}
         <MeshTransmissionMaterial
           backside
-          samples={4}
+          samples={3}
           thickness={0.6}
           chromaticAberration={0.12}
           anisotropy={0.3}
@@ -89,11 +89,43 @@ function StudioRig() {
         <sphereGeometry args={[1, 32, 32]} />
         <meshBasicMaterial color="#ffffff" side={THREE.BackSide} />
       </mesh>
-      <Lightformer form="ring" intensity={6} color="#a8b8ff" position={[4, 3, 4]} scale={[8, 8, 1]} />
-      <Lightformer form="ring" intensity={5} color="#ffc8e8" position={[-4, -3, 4]} scale={[7, 7, 1]} />
-      <Lightformer form="rect" intensity={4} color="#b8f0ff" position={[0, 5, 0]} scale={[10, 2, 1]} rotation={[Math.PI / 2, 0, 0]} />
-      <Lightformer form="rect" intensity={3.5} color="#fff0c8" position={[0, -5, 0]} scale={[10, 2, 1]} rotation={[-Math.PI / 2, 0, 0]} />
-      <Lightformer form="circle" intensity={4} color="#e8d0ff" position={[-5, 0, -3]} scale={[6, 6, 1]} />
+      <Lightformer
+        form="ring"
+        intensity={6}
+        color="#a8b8ff"
+        position={[4, 3, 4]}
+        scale={[8, 8, 1]}
+      />
+      <Lightformer
+        form="ring"
+        intensity={5}
+        color="#ffc8e8"
+        position={[-4, -3, 4]}
+        scale={[7, 7, 1]}
+      />
+      <Lightformer
+        form="rect"
+        intensity={4}
+        color="#b8f0ff"
+        position={[0, 5, 0]}
+        scale={[10, 2, 1]}
+        rotation={[Math.PI / 2, 0, 0]}
+      />
+      <Lightformer
+        form="rect"
+        intensity={3.5}
+        color="#fff0c8"
+        position={[0, -5, 0]}
+        scale={[10, 2, 1]}
+        rotation={[-Math.PI / 2, 0, 0]}
+      />
+      <Lightformer
+        form="circle"
+        intensity={4}
+        color="#e8d0ff"
+        position={[-5, 0, -3]}
+        scale={[6, 6, 1]}
+      />
     </Environment>
   );
 }
@@ -103,9 +135,14 @@ export function HeroScene() {
 
   return (
     <Canvas
-      dpr={[1, 1.6]}
+      dpr={[1, 1.4]}
       camera={{ position: [0, 0, 6], fov: 38 }}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      gl={{
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance",
+        failIfMajorPerformanceCaveat: true,
+      }}
       onPointerMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
         mouse.current.x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
@@ -121,9 +158,23 @@ export function HeroScene() {
       {/* Primary orb — far right */}
       <GlassShape position={[2.2, 0, 0]} scale={1.55} geometry="ico" mouse={mouse} />
       {/* Secondary torus — top */}
-      <GlassShape position={[3.4, 1.6, -1]} scale={0.5} speed={1.4} rotation={0.7} geometry="torus" mouse={mouse} />
+      <GlassShape
+        position={[3.4, 1.6, -1]}
+        scale={0.5}
+        speed={1.4}
+        rotation={0.7}
+        geometry="torus"
+        mouse={mouse}
+      />
       {/* Smaller octa — bottom */}
-      <GlassShape position={[1.4, -1.6, -0.5]} scale={0.42} speed={0.7} rotation={0.5} geometry="octa" mouse={mouse} />
+      <GlassShape
+        position={[1.4, -1.6, -0.5]}
+        scale={0.42}
+        speed={0.7}
+        rotation={0.5}
+        geometry="octa"
+        mouse={mouse}
+      />
       <Particles />
     </Canvas>
   );

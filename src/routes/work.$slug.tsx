@@ -46,7 +46,9 @@ export const Route = createFileRoute("/work/$slug")({
   notFoundComponent: () => (
     <div className="px-4 pt-40 text-center">
       <h1 className="font-display text-4xl">Project not found.</h1>
-      <Link to="/work" className="mt-6 inline-block underline">Back to work</Link>
+      <Link to="/work" className="mt-6 inline-block underline">
+        Back to work
+      </Link>
     </div>
   ),
   component: ProjectPage,
@@ -61,7 +63,10 @@ function ProjectPage() {
   const role = lang === "ar" ? project.role.ar : project.role.en;
   const type = lang === "ar" ? project.type.ar : project.type.en;
   const process = (lang === "ar" ? project.process.ar : project.process.en) as readonly string[];
-  const results = (lang === "ar" ? project.results.ar : project.results.en) as readonly { label: string; value: string }[];
+  const results = (lang === "ar" ? project.results.ar : project.results.en) as readonly {
+    label: string;
+    value: string;
+  }[];
   const stack = project.stack as readonly string[];
 
   const other = profile.projects.filter((p) => p.slug !== project.slug);
@@ -77,14 +82,14 @@ function ProjectPage() {
         </Link>
 
         <header className="mb-12">
-          <div className="mb-4 flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.24em] text-[var(--text-faint)]">
+          <div className="mb-4 flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.24em] text-[var(--text-faint)] rtl:tracking-[0.1em]">
             <span>{project.period}</span>
             <span className="h-1 w-1 rounded-full bg-[var(--text-faint)]" />
             <span>{type}</span>
             <span className="h-1 w-1 rounded-full bg-[var(--text-faint)]" />
             <span>{role}</span>
           </div>
-          <h1 className="font-display text-balance text-5xl font-medium leading-[1] sm:text-7xl">
+          <h1 className="premium-heading text-5xl sm:text-7xl">
             <SplitText text={title} />
           </h1>
           <p className="mt-6 max-w-3xl text-balance text-lg leading-relaxed text-[var(--text-soft)] sm:text-xl">
@@ -107,7 +112,7 @@ function ProjectPage() {
                 href={project.repo}
                 target="_blank"
                 rel="noopener"
-                className="glass inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-[var(--text)] transition-all hover:scale-[1.03]"
+                className="glass glass-interactive inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-[var(--text)]"
               >
                 <Github size={14} /> {t("Source", "الكود")}
               </a>
@@ -118,7 +123,7 @@ function ProjectPage() {
         {/* Cover */}
         {project.cover && (
           <Reveal>
-            <div className="glass-card noise-overlay mb-16 overflow-hidden rounded-[2rem] p-2">
+            <div className="glass-card glass-edge noise-overlay mb-16 overflow-hidden rounded-[2rem] p-2">
               <motion.img
                 src={project.cover}
                 alt={title}
@@ -136,7 +141,7 @@ function ProjectPage() {
         <div className="mb-16 grid gap-3 sm:grid-cols-3">
           {results.map((r) => (
             <Reveal key={r.label}>
-              <div className="glass-card noise-overlay p-5">
+              <div className="glass-card glass-interactive noise-overlay p-5">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--text-faint)]">
                   {r.label}
                 </div>
@@ -197,9 +202,11 @@ function ProjectPage() {
                 key={p.slug}
                 to="/work/$slug"
                 params={{ slug: p.slug }}
-                className="glass-card noise-overlay group p-5 transition-all hover:-translate-y-1"
+                className="glass-card glass-interactive noise-overlay group p-5"
               >
-                <div className="text-[10px] uppercase tracking-[0.24em] text-[var(--text-faint)]">{p.period}</div>
+                <div className="text-[10px] uppercase tracking-[0.24em] text-[var(--text-faint)]">
+                  {p.period}
+                </div>
                 <h3 className="mt-2 font-display text-xl font-medium">
                   {lang === "ar" ? p.title.ar : p.title.en}
                 </h3>

@@ -7,10 +7,8 @@ const ALL = Object.values(profile.skills).flat();
 export function SkillMarquee() {
   const { t } = useI18n();
   return (
-    <section className="relative py-16">
-      <div className="mb-6 px-4 text-center text-[11px] font-semibold uppercase tracking-[0.32em] text-[var(--text-faint)]">
-        {t("Daily toolkit", "أدواتي اليومية")}
-      </div>
+    <section className="relative py-16 sm:py-20">
+      <div className="eyebrow mb-6 px-4 text-center">{t("Daily toolkit", "أدواتي اليومية")}</div>
       <div className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[var(--bg)] to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[var(--bg)] to-transparent" />
@@ -22,7 +20,7 @@ export function SkillMarquee() {
           {[...ALL, ...ALL].map((s, i) => (
             <span
               key={i}
-              className="glass-pill shrink-0 px-4 py-2 text-sm font-medium text-[var(--text-soft)]"
+              className="glass-pill glass-interactive shrink-0 px-4 py-2 text-sm font-medium text-[var(--text-soft)]"
             >
               {s}
             </span>

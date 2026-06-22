@@ -69,9 +69,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
       <div className="aurora-mesh absolute inset-0 -z-10 opacity-60" />
       <div className="glass-strong relative max-w-md rounded-[2rem] p-10 text-center">
         <Monogram size={48} className="mx-auto mb-4" />
-        <h1 className="font-display text-3xl font-medium text-[var(--text)]">
-          Something slipped.
-        </h1>
+        <h1 className="font-display text-3xl font-medium text-[var(--text)]">Something slipped.</h1>
         <p className="mt-3 text-sm leading-relaxed text-[var(--text-soft)]">
           We hit an unexpected error. Try again, or head home.
         </p>

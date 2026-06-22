@@ -33,9 +33,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (typeof window !== "undefined") localStorage.setItem(STORAGE_KEY, t);
   }, []);
 
-  const toggle = useCallback(() => setTheme(theme === "light" ? "dark" : "light"), [theme, setTheme]);
+  const toggle = useCallback(
+    () => setTheme(theme === "light" ? "dark" : "light"),
+    [theme, setTheme],
+  );
 
-  return <ThemeContext.Provider value={{ theme, setTheme, toggle }}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme, toggle }}>{children}</ThemeContext.Provider>
+  );
 }
 
 export function useTheme() {

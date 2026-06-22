@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero/hero";
 import { AboutPreview } from "@/components/sections/about-preview";
 import { SkillMarquee } from "@/components/sections/skill-marquee";
 import { FeaturedWork } from "@/components/sections/featured-work";
+import { ExperienceRadar } from "@/components/sections/experience-radar";
 import { PrinciplesGrid } from "@/components/sections/principles-grid";
 import { ContactCta } from "@/components/sections/contact-cta";
 
@@ -61,6 +62,7 @@ function Home() {
       <SkillMarquee />
       <AboutPreview />
       <FeaturedWork />
+      <ExperienceRadar />
       <PrinciplesGrid />
       <ContactCta />
     </>

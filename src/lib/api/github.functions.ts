@@ -47,7 +47,9 @@ export const getGitHubData = createServerFn({ method: "GET" }).handler(
     try {
       const [profileRes, reposRes] = await Promise.all([
         fetch(`https://api.github.com/users/${username}`, { headers }),
-        fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`, { headers }),
+        fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`, {
+          headers,
+        }),
       ]);
       if (!profileRes.ok || !reposRes.ok) {
         return {
@@ -63,8 +65,12 @@ export const getGitHubData = createServerFn({ method: "GET" }).handler(
       const profile = (await profileRes.json()) as Profile;
       const reposRaw = (await reposRes.json()) as Repo[];
       const repos = reposRaw
-        .filter((r) => !((r as unknown as { fork?: boolean }).fork))
-        .sort((a, b) => b.stargazers_count - a.stargazers_count || +new Date(b.updated_at) - +new Date(a.updated_at));
+        .filter((r) => !(r as unknown as { fork?: boolean }).fork)
+        .sort(
+          (a, b) =>
+            b.stargazers_count - a.stargazers_count ||
+            +new Date(b.updated_at) - +new Date(a.updated_at),
+        );
       const totalStars = repos.reduce((s, r) => s + r.stargazers_count, 0);
       const langCounts: Record<string, number> = {};
       for (const r of repos) {

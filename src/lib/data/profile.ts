@@ -1,5 +1,4 @@
 // Single source of truth — real data from CV only. Never invent.
-import portrait from "@/assets/portrait.asset.json";
 import githubbot from "@/assets/githubbot.asset.json";
 
 export const profile = {
@@ -35,7 +34,7 @@ export const profile = {
     github: "https://github.com/abbn7",
     githubUser: "abbn7",
   },
-  portrait: portrait.url,
+  portrait: "https://github.com/abbn7.png?size=800",
   highlights: {
     en: [
       {
